@@ -6,9 +6,9 @@ import { Logger } from './utils/logger.js';
 import { MessageSender } from './utils/messageSender.js';
 
 /**
- * Main application class that orchestrates all components.
+ * Main agent class that orchestrates all components.
  */
-class SoSaverApp {
+class SoSaverAgent {
   private readonly logger: Logger;
   private readonly messageSender: MessageSender;
   private readonly moduleDumper: ModuleDumper;
@@ -16,7 +16,7 @@ class SoSaverApp {
   private readonly libraryLoaderHook: LibraryLoaderHook;
 
   /**
-   * Creates a new SoSaverApp instance.
+   * Creates a new SoSaverAgent instance.
    */
   constructor() {
     this.logger = new Logger('[Frida]');
@@ -25,7 +25,7 @@ class SoSaverApp {
     this.memoryScanner = new MemoryScanner(this.logger, this.messageSender, this.moduleDumper);
     this.libraryLoaderHook = new LibraryLoaderHook(this.logger, this.moduleDumper);
 
-    this.logger.log('SoSaver app initialized.');
+    this.logger.log('soSaver agent initialized.');
   }
 
   /**
@@ -92,10 +92,10 @@ class SoSaverApp {
   }
 
   /**
-   * Starts the SoSaver application by initializing all components and scanning for modules.
+   * Starts the soSaver agent by initializing all components and scanning for modules.
    */
   public start(): void {
-    this.logger.log('Starting SoSaver...');
+    this.logger.log('Starting soSaver agent...');
 
     // 1. Initial scan for already loaded modules
     this.performInitialModuleDump();
@@ -106,17 +106,17 @@ class SoSaverApp {
     // 3. Start periodic scanning
     this.startPeriodicScanning();
 
-    this.logger.log('SoSaver initialization complete. Waiting for events...');
+    this.logger.log('soSaver agent initialization complete. Waiting for events...');
   }
 }
 
 // Create and start the application when the script loads
 try {
-  const app = new SoSaverApp();
-  app.start();
+  const agent = new SoSaverAgent();
+  agent.start();
 } catch (error) {
   console.error(
-    `[Frida] Fatal error during SoSaver initialization: ${
+    `[Frida] Fatal error during soSaver agent initialization: ${
       error instanceof Error ? error.message : String(error)
     }`,
   );

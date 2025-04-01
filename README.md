@@ -1,4 +1,4 @@
-# SoSaver-Frida
+# soSaver-frida
 
 TypeScript Frida script component for the [soSaver](https://github.com/TheQmaks/sosaver) project - a tool for dumping shared libraries (.so files) from Android applications.
 
